@@ -1,6 +1,8 @@
 img = "";
 model_status = "";
 
+objects = [];
+
 function preload() {
     img = loadImage('fruit_basket.jpg');
 }
@@ -11,7 +13,6 @@ function setup() {
 
     //setup cocossd model
     objectDetector = ml5.objectDetector('cocossd', modelLoaded);
-
     document.getElementById("status").innerHTML = "Status:Detecting Objects...";
 
 }
@@ -19,13 +20,21 @@ function setup() {
 function draw() {
     image(img, 0, 0, 640, 420);
 
-    //add label near dog
-    fill('#FF0000');
-    text('fruits', 45, 75);
+    if (model_status != "") {
+        for (i = 0; i < objects.length; i++) {
+            console.log(objects[i].label);
+            document.getElementById("status").innerHTML = "Status:Object Detected";
 
-    noFill();
-    stroke("#FF0000");
-    rect(30, 60, 350, 350);
+            fill("#FF0000");
+            percent = floor(objects[i].confidence * 100);
+            text(objects[i].label + " " + percent + "%", objects[i].x, objects[i].y);
+
+
+            noFill();
+            stroke("#FF0000");
+            rect(objects[i].x, objects[i].y, objects[i].width, objects[i].height);
+        }
+    }
 }
 
 function modelLoaded() {
@@ -39,5 +48,6 @@ function gotResult(error, results) {
         console.log(error);
     } else {
         console.log(results);
+        objects = results;
     }
 }
