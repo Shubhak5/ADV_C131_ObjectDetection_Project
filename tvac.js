@@ -4,7 +4,7 @@ model_status = "";
 objects = [];
 
 function preload() {
-    img = loadImage('fruit_basket.jpg');
+    img = loadImage('TV_AC.jpg');
 }
 
 function setup() {
@@ -34,7 +34,7 @@ function draw() {
             stroke("#FF0000");
             rect(objects[i].x, objects[i].y, objects[i].width, objects[i].height);
         }
-        document.getElementById("result").innerHTML = "There are 7 big objects from which cocossd model has detected " + objects.length + " object ";
+        document.getElementById("result").innerHTML = "There are 2 big objects from which cocossd model has detected " + objects.length + " object ";
     }
 }
 

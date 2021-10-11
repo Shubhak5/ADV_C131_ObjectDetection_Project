@@ -4,7 +4,7 @@ model_status = "";
 objects = [];
 
 function preload() {
-    img = loadImage('fruit_basket.jpg');
+    img = loadImage('bottles.jpg');
 }
 
 function setup() {
@@ -32,9 +32,9 @@ function draw() {
 
             noFill();
             stroke("#FF0000");
-            rect(objects[i].x, objects[i].y, objects[i].width, objects[i].height);
+            rect(objects[i].x - 400, objects[i].y - 400, objects[i].width, objects[i].height);
         }
-        document.getElementById("result").innerHTML = "There are 7 big objects from which cocossd model has detected " + objects.length + " object ";
+        document.getElementById("result").innerHTML = "There are 3 big objects from which cocossd model has detected " + objects.length + " object ";
     }
 }
 
